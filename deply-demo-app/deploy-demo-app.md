@@ -43,7 +43,7 @@ This lab assumes you have already completed the following:
 2. Download the `sdb-demo-app.zip`  file. 
 
     ```
-    [oracle@gsmhost ~]$ https://github.com/minqiaowang/globally-distributed-database-with-raft/raw/main/create-sample-schema/sdb-demo-app.zip
+    [oracle@gsmhost ~]$ wget https://github.com/minqiaowang/globally-distributed-database-with-raft/raw/main/deploy-demo-app/sdb-demo-app.zip
     ```
 
    
