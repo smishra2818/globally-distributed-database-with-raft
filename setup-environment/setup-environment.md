@@ -8,7 +8,7 @@ In this lab you will provision 4 OCI Base Database Services an 1 OCI VM Compute 
 -   1 Base Database Service for Catalog
 -   1 Compute instance for GSM
 
-Estimated Lab Time: 30 minutes.
+Estimated Lab Time: 50 minutes.
 
 ### Objectives
 
@@ -93,7 +93,7 @@ When using Resource Manager to deploy an environment, execute a terraform  **App
     | shardhost3 | 10.0.0.13  | sdb3    | sdb3_workshop    | shard3   |
     | gsmhost    | 10.0.0.20  |         |                  |          |
 
-    The `db_domain` is `subnet1.primaryvcn.oraclevcn.com`. 
+    The `db_domain` is `subnet1.primaryvcn.oraclevcn.com`. The default password for database dba is `WelcomePTS_2024# `.
 
 ## **Task 3:** Connect to your Instance
 

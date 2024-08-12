@@ -2,7 +2,7 @@
 
 ## Introduction
 
-sdaf. 
+In this lab, you will provision a Globally Distributed Database with RAFT replication. 
 
 Estimated Lab Time: 60 minutes.
 
@@ -286,17 +286,7 @@ This lab assumes you have already completed the following:
 
      
 
-4.   stop and disable the firewall.
-
-     ```
-     [opc@catahost ~]$ sudo systemctl stop firewalld
-     [opc@catahost ~]$ sudo systemctl unmask firewalld.service
-     [opc@catahost ~]$ sudo systemctl disable firewalld
-     ```
-
-     
-
-5.   Edit the hosts file
+4.   Edit the hosts file
 
      ```
      [opc@catahost ~]$ sudo vi /etc/hosts
@@ -344,7 +334,7 @@ This lab assumes you have already completed the following:
 
      
 
-8.   Initialization parameter adjustments for CDB
+7.   Initialization parameter adjustments for CDB
 
      ```
      alter system set open_links=16 scope=spfile;
@@ -404,17 +394,7 @@ This lab assumes you have already completed the following:
 
      
 
-2.   stop and disable firewall
-
-     ```
-     [opc@shardhost1 ~]$ sudo systemctl stop firewalld
-     [opc@shardhost1 ~]$ sudo systemctl unmask firewalld.service
-     [opc@shardhost1 ~]$ sudo systemctl disable firewalld
-     ```
-
-     
-
-3.   Edit the hosts file
+2.   Edit the hosts file
 
      ```
      [opc@shardhost1 ~]$ sudo vi /etc/hosts
@@ -462,7 +442,7 @@ This lab assumes you have already completed the following:
 
      
 
-6.   Initialization parameters adjustment for CDB
+5.   Initialization parameters adjustment for CDB
 
      ```
      alter system set open_links=16 scope=spfile;
