@@ -43,7 +43,7 @@ This lab assumes you have already completed the following:
 2. Download the `sdb_demo_app.zip`  file. 
 
     ```
-    [oracle@gsmhost ~]$ wget https://github.com/minqiaowang/globally-distributed-database-with-raft/raw/main/deply-demo-app/sdb_demo_app.zip
+    [oracle@gsmhost ~]$ wget https://github.com/minqiaowang/globally-distributed-database-with-raft/raw/main/deploy-demo-app/sdb_demo_app.zip
     ```
 
    
@@ -123,6 +123,7 @@ This lab assumes you have already completed the following:
 
     ```
     SQL> @demo_app_ext.sql
+    SQL> exit
     ```
 
     
@@ -220,7 +221,6 @@ This lab assumes you have already completed the following:
     
        
     
-
 2. Connect to GDSCTL
 
    ```
@@ -289,21 +289,34 @@ This lab assumes you have already completed the following:
    
    
    
-2. Exit the GDSCTL
+2. Exit the GDSCTL, and exit to **opc** user.
 
    ```
    GDSCTL> exit
-   [oracle@gsmhost ~]$ 
+   [oracle@gsmhost ~]$ exit
+   [opc@gsmhost ~]$ 
    ```
    
    
    
-2. Now, connect to the shard1 database CDB.
+2. Now, connect to the shard host1 with **opc** user and switch to **oracle** user.
 
    ```
-   [oracle@gsmhost ~]$ sqlplus sys/WelcomePTS_2024#@shardhost1:1521/sdb1_workshop as sysdba
+   [opc@gsmhost ~]$ ssh -i labkey opc@shardhost1
+   Last login: Tue Aug 13 02:44:40 2024 from 10.0.0.20
+   [opc@shardhost1 ~]$ sudo su - oracle
+   Last login: Tue Aug 13 02:48:21 UTC 2024
+   [oracle@shardhost1 ~]$ 
+   ```
    
-   SQL*Plus: Release 23.0.0.0.0 - for Oracle Cloud and Engineered Systems on Sun Aug 11 02:48:23 2024
+   
+   
+2. Connect to SQLPLUS as sysdba and shutdown the database
+
+   ```
+   [oracle@shardhost1 ~]$ sqlplus / as sysdba
+   
+   SQL*Plus: Release 23.0.0.0.0 - for Oracle Cloud and Engineered Systems on Tue Aug 13 02:49:23 2024
    Version 23.5.0.24.07
    
    Copyright (c) 1982, 2024, Oracle.  All rights reserved.
@@ -313,33 +326,16 @@ This lab assumes you have already completed the following:
    Oracle Database 23ai EE Extreme Perf Release 23.0.0.0.0 - for Oracle Cloud and Engineered Systems
    Version 23.5.0.24.07
    
-   SQL>
-   ```
-   
-   
-   
-2. Shutdown the database
-
-   ```
    SQL> shutdown immediate
-   
    Database closed.
    Database dismounted.
    ORACLE instance shut down.
-   ERROR:
-   ORA-12514: Cannot connect to database. Service sdb1_workshop is not registered
-   with the listener at host 10.0.0.11 port 1521.
-   (CONNECTION_ID=H2Bo8Z7ilGHgYxQAAAomKw==)
-   Help: https://docs.oracle.com/error-help/db/ora-12514/
-   
-   
-   Warning: You are no longer connected to ORACLE.
    SQL> 
    ```
    
    
    
-2. You can see the apps still running with no error
+2. You can see the apps still running with some error
 
    ```
    RO Queries | RW Queries | RO Failed  | RW Failed  | APS 

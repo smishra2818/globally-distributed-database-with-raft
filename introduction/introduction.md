@@ -25,7 +25,7 @@ Each shard contains replicas from multiple RUs. Some of these replicas are leade
 
 In Oracle Globally Distributed Database, an RU is a set of chunks, as shown in the image below.
 
-![Description of sharding-raft-ru_v2.eps follows](https://docs.oracle.com/en/database/oracle/oracle-database/23/shard/img/sharding-raft-ru_v2.png)
+![image-20240813110326679](images/image-20240813110326679.png)
 
 
 
@@ -35,7 +35,7 @@ Each replication unit contains exactly one chunk set and has a **leader** and a 
 
 All DMLs for a particular subset of data are executed in the leader first, and then are replicated to its followers.
 
-![Description of sharding-raft-three-shards-b.eps follows](https://docs.oracle.com/en/database/oracle/oracle-database/23/shard/img/sharding-raft-three-shards-b.png)
+![image-20240813110443600](images/image-20240813110443600.png)
 
 
 
