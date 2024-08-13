@@ -460,7 +460,7 @@ This lab assumes you have already completed the following:
 
    
 
-3. Run the config commands as shown below for each of the shards(sdb1_workshop_shard1, sdb2_workshop_shard2, sdb3_workshop_shard3) and verify if there are any DDL error. 
+3. Run the config commands as shown below for each of the shards(`sdb1_workshop_shard1, sdb2_workshop_shard2, sdb3_workshop_shard3`) and verify if there are any DDL error. 
 
     ```
     GDSCTL> config shard -shard sdb1_workshop_shard1

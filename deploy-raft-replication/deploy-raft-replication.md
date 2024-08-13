@@ -250,9 +250,7 @@ This lab assumes you have already completed the following:
 
       
 
-13.   Exit from the terminal.
-
-14.   sdaf
+15.   Exit from the terminal.
 
 ## Task 2: Execute Prep Scripts for Oracle Sharding on Catalog
 
@@ -370,9 +368,7 @@ This lab assumes you have already completed the following:
 
      
 
-9.   Exit and back to the gsmhost **opc** user.
-
-10.   sadf
+10.   Exit and back to the gsmhost **opc** user.
 
 ## Task 3: Execute Prep Scripts for Oracle Sharding on each shard
 
@@ -535,9 +531,7 @@ This lab assumes you have already completed the following:
 
 8.   Exit and back to gsmhost.
 
-9.   Repeat Task 3 steps to configure other shards.
-
-10.   sadf
+11.   Repeat Task 3 steps to configure other shards.
 
       
 
@@ -910,8 +904,6 @@ This lab assumes you have already completed the following:
       ```
 
       
-
-19.   Pdf
 
 Now the RAFT replication environment is ready.
 

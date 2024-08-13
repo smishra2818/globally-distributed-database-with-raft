@@ -25,8 +25,8 @@
             "filename": "../../create-sample-schema/create-sample-schema.md"
         },
         {
-            "title": "Lab 4: Deploy the DEMO Application",
-            "filename": "../../deply-demo-app/deply-demo-app.md"
+            "title": "Lab 4: Explore the RAFT Replication Features",
+            "filename": "../../explore-raft-replication/explore-raft-replication.md"
         },
         {
             "title": "Need Help?",

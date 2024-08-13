@@ -17,13 +17,44 @@ Oracle Globally Distributed Database disperses segments of a data set across man
 
 RAFT Replication enables rapid failover within seconds and zero data loss during node or data center outages, facilitating an Active-Active-Active symmetric distributed database architecture that enhances availability, simplifies management, and optimizes resource utilization globally.
 
+**Replication Unit**
 
+When Raft replication is enabled, a sharded database contains multiple **replication units**. A replication unit (RU) is a set of chunks that have the same replication topology. Each RU has three replicas placed on different shards. The Raft consensus protocol is used to maintain consistency between the replicas in case of failures, network partitioning, message loss, or delay.
+
+Each shard contains replicas from multiple RUs. Some of these replicas are leaders and some are followers. Raft replication tries to maintain a balanced distribution of leaders and followers across shards. By default each shard is a leader for two RUs and is a follower for four other RUs. This makes all shards active and provides optimal utilization of hardware resources.
+
+In Oracle Globally Distributed Database, an RU is a set of chunks, as shown in the image below.
+
+![Description of sharding-raft-ru_v2.eps follows](https://docs.oracle.com/en/database/oracle/oracle-database/23/shard/img/sharding-raft-ru_v2.png)
+
+
+
+**Raft Group**
+
+Each replication unit contains exactly one chunk set and has a **leader** and a set of **followers**, and these members form a *raft group*. The leader and its followers for a replication unit contain replicas of the same chunk set in different shards as shown below. A shard can be the leader for some replication units and a follower for other replication units.
+
+All DMLs for a particular subset of data are executed in the leader first, and then are replicated to its followers.
+
+![Description of sharding-raft-three-shards-b.eps follows](https://docs.oracle.com/en/database/oracle/oracle-database/23/shard/img/sharding-raft-three-shards-b.png)
+
+
+
+**Replication Factor**
+
+The **replication factor** (RF) determines the number of participants in a Raft group. This number includes the leader and its followers.
+
+The RU needs a majority of replicas available for write.
+
+-   RF = 3: tolerates one replica failure
+-   RF = 5: tolerates two replica failures
+
+In Oracle Globally Distributed Database , the replication factor is specified for the entire sharded database, that is all replication units in the database have the same RF. The number of followers is limited to two, thus the replication factor is three.
 
 ### Objectives
 
 In this workshop, you will
 
-- Deploy a shard databa
+- Deploy a Globally Distributed Database with RAFT replication.
 
 
 
@@ -48,7 +79,3 @@ In order to do this workshop, you need
 * **Author** - Minqiao Wang, Aug 2024
 * **Contributors** -  
 * **Workshop Expiry Date** - 
-
-
-## See an issue?
-Please submit feedback using this [form](https://apexapps.oracle.com/pls/apex/f?p=133:1:::::P1_FEEDBACK:1). Please include the *workshop name*, *lab* and *step* in your request.  If you don't see the workshop name listed, please enter it manually. If you would like us to follow up with you, enter your email in the *Feedback Comments* section.
