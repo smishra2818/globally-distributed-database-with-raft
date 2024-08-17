@@ -422,7 +422,7 @@ This lab assumes you have already completed the following:
 
    
 
-## **Task 2:** Verify the Shard App Schema
+## Task 2: Verify the Shard App Schema
 
 1. In the gsm host work with **oracle** user, run GDSCTL command.
 
