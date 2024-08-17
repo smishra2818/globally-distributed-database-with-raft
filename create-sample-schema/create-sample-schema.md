@@ -11,6 +11,7 @@ Estimated Lab Time: 30 minutes.
 In this lab, you will perform the following steps:
 - Create the schema user, tablespace set, sharded tables and duplicated tables
 - Verify that the DDLs have been propagated to all the shards
+- Insert data into the sharded table
 
 ### Prerequisites
 
@@ -421,7 +422,7 @@ This lab assumes you have already completed the following:
 
    
 
-## **STEP 2:** Verify the Shard App Schema
+## **Task 2:** Verify the Shard App Schema
 
 1. In the gsm host work with **oracle** user, run GDSCTL command.
 
@@ -670,6 +671,111 @@ This lab assumes you have already completed the following:
      sdb1_workshop_shard1				       18
      sdb2_workshop_shard2				       18
      sdb3_workshop_shard3				       18
+     ```
+
+
+
+
+## Task 3: Insert Data Into Sharded Table
+
+1.   Connect to the gsm host and switch to **oracle** user
+
+     ```
+     $ ssh -i labkey opc@<gsmhost_public_ip>
+     Last login: Sun Nov 29 01:26:28 2020 from 59.66.120.23
+     -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory
+     
+     [opc@gsmhost ~]$ sudo su - oracle
+     Last login: Sat Aug 10 23:59:23 GMT 2024 on pts/0
+     [oracle@gsmhost ~]$
+     ```
+
+     
+
+2.   Connect the sharded database using the default GDS$CATALOG service
+
+     ```
+     [oracle@gsmhost ~]$ sqlplus app_schema/App_Schema_Pass_123@gsmhost:1522/GDS\$CATALOG.oradbcloud
+     
+     SQL*Plus: Release 23.0.0.0.0 - for Oracle Cloud and Engineered Systems on Sat Aug 17 05:11:51 2024
+     Version 23.5.0.24.07
+     
+     Copyright (c) 1982, 2024, Oracle.  All rights reserved.
+     
+     Last Successful login time: Sat Aug 17 2024 05:10:59 +00:00
+     
+     Connected to:
+     Oracle Database 23ai EE Extreme Perf Release 23.0.0.0.0 - for Oracle Cloud and Engineered Systems
+     Version 23.5.0.24.07
+     
+     SQL> 
+     ```
+
+     
+
+3.   Run the following script to insert 1000 records into customers table.
+
+     ```
+     SQL> begin
+     for i in 1 .. 1000 loop
+      insert into customers values(i, 'Firstname', 'Lastname','Gold',NULL,NULL,NULL);
+     end loop;
+     end;
+     /  2    3    4    5    6  
+     
+     PL/SQL procedure successfully completed.
+     ```
+
+     
+
+4.   Commit
+
+     ```
+     SQL> commit;
+     
+     Commit complete.
+     ```
+
+     
+
+5.   Check the records in the table.
+
+     ```
+     SQL> select count(*) from customers;
+     
+       COUNT(*)
+     ----------
+           1000
+     ```
+
+     
+
+6.   Connect to each of the shard database, check the records in each of the shard.
+
+     ```
+     SQL> connect app_schema/App_Schema_Pass_123@shardhost1:1521/shard1
+     Connected.
+     SQL> select count(*) from customers;
+     
+       COUNT(*)
+     ----------
+            339
+     
+     SQL> connect app_schema/App_Schema_Pass_123@shardhost2:1521/shard2
+     Connected.
+     SQL> select count(*) from customers;
+     
+       COUNT(*)
+     ----------
+            335
+     
+     SQL> connect app_schema/App_Schema_Pass_123@shardhost3:1521/shard3
+     Connected.
+     SQL> select count(*) from customers;
+     
+       COUNT(*)
+     ----------
+            326
      ```
 
      
