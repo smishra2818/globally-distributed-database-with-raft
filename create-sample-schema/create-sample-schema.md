@@ -778,9 +778,53 @@ This lab assumes you have already completed the following:
             326
      ```
 
+7.   You can connect to the shard database with a sharding key
+
+     ```
+     SQL> connect app_schema/App_Schema_Pass_123@'(description=(address=(protocol=tcp)(host=gsmhost)(port=1522))(connect_data=(service_name=oltp_rw_svc.orasdb.oradbcloud)(SHARDING_KEY=1)))'
+     Connected.
+     ```
+
      
 
-You may now [proceed to the next lab](#next).
+8.   Show current connected shard DB.
+
+     ```
+     SQL> select db_unique_name from v$database;
+     
+     DB_UNIQUE_NAME
+     ------------------------------
+     sdb1_workshop
+     ```
+
+     
+
+9.   Try to connect with another sharding key
+
+     ```
+     SQL> connect app_schema/App_Schema_Pass_123@'(description=(address=(protocol=tcp)(host=gsmhost)(port=1522))(connect_data=(service_name=oltp_rw_svc.orasdb.oradbcloud)(SHARDING_KEY=1000)))'
+     Connected.
+     ```
+
+     
+
+10.   Show current connected shard DB
+
+      ```
+      SQL> select db_unique_name from v$database;
+      
+      DB_UNIQUE_NAME
+      ------------------------------
+      sdb2_workshop
+      ```
+
+      
+
+11.   Exit from SQLPlus.
+
+
+
+You may now proceed to the next lab.
 
 ## Acknowledgements
 * **Author** - Minqiao Wang, Aug 2024
