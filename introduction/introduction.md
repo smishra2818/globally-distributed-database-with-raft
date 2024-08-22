@@ -77,5 +77,5 @@ In order to do this workshop, you need
 ## Acknowledgements
 
 * **Author** - Minqiao Wang, Aug 2024
-* **Contributors** -  
+* **Contributors** -  Satyabrata Mishra 
 * **Workshop Expiry Date** - 
